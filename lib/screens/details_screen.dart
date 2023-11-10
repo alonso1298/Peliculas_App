@@ -7,7 +7,7 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: const Center(
-          child: Text('Home Screen'),
+          child: Text('Details Screen'),
         ),
       )
     );
