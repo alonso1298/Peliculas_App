@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
+  const MovieSlider({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 260,
+      height: 270,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -46,7 +48,7 @@ class _MoviePoster extends StatelessWidget {
             borderRadius:  BorderRadius.circular(20),
             child: const FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'), 
-              image: NetworkImage('https://via.placeholder.com/200x400'),
+              image: NetworkImage('https://via.placeholder.com/300x400'),
               width: 130,
               height: 190,
               fit: BoxFit.cover,
