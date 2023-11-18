@@ -21,7 +21,7 @@ class DetailScreen extends StatelessWidget {
               _OverView(),
               _OverView(),
               _OverView(),
-              CastingCards(),
+              const CastingCards(),
 
             ])
           )

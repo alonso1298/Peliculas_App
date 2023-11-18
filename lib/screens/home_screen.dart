@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Peliculas en cines'),
+        title: const Text('Peliculas en cines', style: TextStyle(color: Colors.white),),
         //Esto quita la sombra que tiene por defecto el AppBar
         elevation: 0,
         actions: [
@@ -28,12 +28,15 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
+            
             // Tarjetas principales 
             CardSwiper(movies: moviesProvider.onDisplayMovies),
 
             // Slider de peliculas
-            MovieSlider(),
+            MovieSlider(
+              movies: moviesProvider.popularMovies,
+              title: 'Populares'
+            ),
           ],
         ),
       )
