@@ -41,7 +41,7 @@ class CardSwiper extends StatelessWidget {
 
           return GestureDetector(
             // Al hacer tab regresa una funcion que nos lleva a otra pantalla 
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
+            onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
