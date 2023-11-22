@@ -47,11 +47,10 @@ class Cast {
     });
 
     get fullProfilePath{
-      if (fullProfilePath != null) 
+      if ( profilePath != null) 
         return 'https://image.tmdb.org/t/p/w500${this.profilePath}';
 
       return 'https://i.stack.imgur.com/GNhxO.png';
-
     }
 
     factory Cast.fromJson(String str) => Cast.fromMap(json.decode(str));
