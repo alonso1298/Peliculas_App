@@ -29,7 +29,7 @@ class MoviesProvider extends ChangeNotifier {
   Stream<List<Movie>> get seuggestionStream => _suggestionsStreamController.stream;
 
   MoviesProvider() {
-    print('MoviesProvider inicializado');
+    //print('MoviesProvider inicializado');
 
     getOnDisplayMovies();
     getPopularMovies();
@@ -73,7 +73,7 @@ class MoviesProvider extends ChangeNotifier {
 
     if ( moviesCast.containsKey( movieId ) ) return moviesCast[movieId]!;
 
-    print('Pidiendo info al servidor - cast');
+    //print('Pidiendo info al servidor - cast');
 
     final jsonData = await _getJsonData('3/movie/$movieId/credits');
     final creditsResponse = CreditsResponse.fromJson( jsonData );
@@ -107,7 +107,7 @@ class MoviesProvider extends ChangeNotifier {
       _suggestionsStreamController.add( results );
     };
 
-    final timer = Timer.periodic(Duration(milliseconds: 300), ( _ ) {
+    final timer = Timer.periodic(const Duration(milliseconds: 300), ( _ ) {
       debouncer.value = query;
     });
 
