@@ -1,6 +1,9 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:peliculas/helpers/debouncer.dart';
 import 'package:peliculas/models/models.dart';
 import 'package:peliculas/models/search_response.dart';
 
@@ -17,6 +20,13 @@ class MoviesProvider extends ChangeNotifier {
   Map<int, List<Cast>> moviesCast = {};
 
   int _popularPage = 0;
+
+  final debouncer = Debouncer(
+    duration: const Duration( milliseconds: 500 )
+  );
+
+  final StreamController<List<Movie>> _suggestionsStreamController = StreamController.broadcast();
+  Stream<List<Movie>> get seuggestionStream => _suggestionsStreamController.stream;
 
   MoviesProvider() {
     print('MoviesProvider inicializado');
@@ -86,6 +96,22 @@ class MoviesProvider extends ChangeNotifier {
 
     return searchResponse.results;
 
+  }
+
+  void getSuggestionsByQuery(String query){
+
+    debouncer.value = '';
+    debouncer.onValue = ( value ) async {
+      //print('Tenemos valor a buscar: $value');
+      final results = await searchMovies(value);
+      _suggestionsStreamController.add( results );
+    };
+
+    final timer = Timer.periodic(Duration(milliseconds: 300), ( _ ) {
+      debouncer.value = query;
+    });
+
+    Future.delayed(const Duration(milliseconds: 301)).then((value) => timer.cancel());
   }
   
 }
